@@ -24,9 +24,14 @@
               "src/assets"
             ],
             "styles": [
+              "C:/angular/app2/node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "C:/angular/app2/node_modules/jquery/dist/jquery.min.js",
+              "C:/angular/app2/node_modules/tether/dist/js/tether.min.js",
+              "C:/angular/app2/node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {
