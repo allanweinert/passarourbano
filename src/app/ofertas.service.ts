@@ -6,31 +6,41 @@ import { URL_API } from './app.api';
 @Injectable()
 export class OfertasService{
 
-  //private url_api = 'http://localhost:3000/ofertas'
-
   constructor(private http: HttpClient){}
 
   public getOfertas(): Promise<Oferta[]> {
-    return this.http.get(`${URL_API}?destaque=true`)
+    return this.http.get(`${URL_API}/ofertas?destaque=true`)
         .toPromise()
-        //.then((resposta: any) => resposta.json())
-
         .then((resposta: any) => resposta)
   }
 
   public getOfertasPorCategoria(categoria: string) : Promise<Oferta[]> {
-    return this.http.get(`${URL_API}?categoria=${categoria}`)
+    return this.http.get(`${URL_API}/ofertas?categoria=${categoria}`)
         .toPromise()
-        //.then((resposta: any) => resposta.json())
         .then((resposta: any) => resposta)
   }
 
   public getOfertaPorId(id: number) : Promise<Oferta> {
-    return this.http.get<Oferta[]>(`${URL_API}?id=${id}`)
+    return this.http.get<Oferta[]>(`${URL_API}/ofertas?id=${id}`)
     .toPromise()
     .then(( resposta => {
-      // console.log(o.shift())
-      return resposta.shift();
+      return resposta[0];
+    }))
+  }
+
+  public getComoUsarOfertaPorId(id: number): Promise<string> {
+    return this.http.get(`${URL_API}/como-usar?id=${id}`)
+    .toPromise()
+    .then(( resposta => {
+      return resposta[0].descricao
+    }))
+  }
+
+  public getOndeFicaOfertaPorId(id: number): Promise<string> {
+    return this.http.get(`${URL_API}/onde-fica?id=${id}`)
+    .toPromise()
+    .then(( resposta => {
+      return resposta[0].descricao
     }))
   }
 }
